@@ -1,0 +1,51 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files — NEVER commit secrets
+.env
+.env*.local
+.env.local
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts.bak
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# design references (login mock-up) — kept locally, not published
+/Ideas/
+
+# local audit scratch (the committed reports live in audits/)
+.lighthouseci/
+
+# Cloudflare security-audit run output (describes vulnerabilities — keep out of VCS until fixed)
+/.audit/security-audit/
+
+# local tooling state
+/.wrangler/
+/.swc/
+*.key
