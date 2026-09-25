@@ -1,0 +1,46 @@
+[
+  {
+    "coverage_id": ".github%2Fworkflows%23push%20and%20pull_request%20events::.github%2Fworkflows%2Fci.yml%23deploy%20job%20production%20environment::profile%2Fquick%2Fall-in-scope-subsystems::SUPPLY-CHAIN-AND-RELEASE.md%23Untrusted%20code%20in%20a%20privileged%20workflow",
+    "hunter": "hunter-repo"
+  },
+  {
+    "coverage_id": "public%2F_headers%23edge%20response%20headers::wrangler.jsonc%23static%20assets::profile%2Fquick%2Fall-in-scope-subsystems::CLOUD-AND-DEPLOYMENT.md%23Edge%2Fruntime%20boundary%20mismatch",
+    "hunter": "hunter-repo"
+  },
+  {
+    "coverage_id": "repository%23committed%20source%20and%20config%20files::.gitignore%23secret%20exclusion::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Cryptography%20and%20secrets",
+    "hunter": "hunter-repo"
+  },
+  {
+    "coverage_id": "repository%23committed%20source%20and%20config%20files::.gitignore%23secret%20exclusion::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Obvious%20things",
+    "hunter": "hunter-repo"
+  },
+  {
+    "coverage_id": "src%2Fapp%2Ftime%2FPortal%2FadmIn%2Fpage.tsx%23render%20other-user%20display_name%20note%20email::src%2Fcomponents%2FAdminReviewTable.tsx%23React%20JSX%20text%20rendering::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Injection",
+    "hunter": "hunter-client"
+  },
+  {
+    "coverage_id": "src%2Fcomponents%2FAddUserForm.tsx%23email%20verification%20dns.google%20lookup::src%2Flib%2FemailCheck.ts%23verifyEmail::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Feature%20abuse%20and%20data%20leakage",
+    "hunter": "hunter-client"
+  },
+  {
+    "coverage_id": "src%2Flib%2Fentries.ts%23time_entries%20PostgREST%20insert%2Fupdate%2Fselect::supabase%2Fschema.sql%23enforce_status_rules::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Business%20logic",
+    "hunter": "hunter-data"
+  },
+  {
+    "coverage_id": "src%2Flib%2Fentries.ts%23time_entries%20PostgREST%20insert%2Fupdate%2Fselect::supabase%2Fschema.sql%23time_entries%20RLS%20policies::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Access%20control",
+    "hunter": "hunter-data"
+  },
+  {
+    "coverage_id": "src%2Flib%2FsupabaseClient.ts%23persistSession%20browser%20storage::src%2Fcomponents%2FRequireAuth.tsx%23client%20route%20gate::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Chained%20vulnerabilities%20and%20trust%20boundaries",
+    "hunter": "hunter-client"
+  },
+  {
+    "coverage_id": "supabase%2Fadmin-create-user.sql%23admin_create_user%20and%20admin_list_users%20RPC::supabase%2Fschema.sql%23is_admin::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Access%20control",
+    "hunter": "hunter-data"
+  },
+  {
+    "coverage_id": "supabase%2Ffunctions%2Fadmin-create-user%2Findex.ts%23POST::supabase%2Ffunctions%2Fadmin-create-user%2Findex.ts%23getUser%20app_metadata.role%20check::profile%2Fquick%2Fall-in-scope-subsystems::ATTACK-CLASSES.md%23Access%20control",
+    "hunter": "hunter-data"
+  }
+]
