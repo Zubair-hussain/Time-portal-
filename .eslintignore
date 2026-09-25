@@ -1,0 +1,4 @@
+supabase/
+out/
+coverage/
+node_modules/
