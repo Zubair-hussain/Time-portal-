@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusBadge renders approved 1`] = `
+<div>
+  <span
+    class="badge badge-approved"
+  >
+    Approved
+  </span>
+</div>
+`;
+
+exports[`StatusBadge renders pending 1`] = `
+<div>
+  <span
+    class="badge badge-pending"
+  >
+    Pending
+  </span>
+</div>
+`;
+
+exports[`StatusBadge renders rejected 1`] = `
+<div>
+  <span
+    class="badge badge-rejected"
+  >
+    Rejected
+  </span>
+</div>
+`;
