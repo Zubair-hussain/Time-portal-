@@ -1,0 +1,13 @@
+// Cloudflare Workers Static Assets — same host type as the ZH portfolio (*.workers.dev).
+// `npm run build` writes ./out; `npx wrangler deploy` uploads it. public/_headers is
+// copied into ./out by the build and applied by Cloudflare at the edge.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "time-portal",
+  "compatibility_date": "2026-05-01",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
