@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MembersPanel matches snapshot 1`] = `
+<div>
+  <section
+    aria-label="Members"
+    class="console-box"
+  >
+    <h2
+      class="console-title"
+    >
+      &gt;_ members
+    </h2>
+    <ul
+      class="member-list"
+    >
+      <li>
+        <div
+          style="min-width: 0;"
+        >
+          <div
+            class="member-name"
+          >
+            Ann
+          </div>
+          <div
+            class="member-email"
+          >
+            ann@x.com
+          </div>
+        </div>
+        <div
+          class="member-tags"
+        >
+          <span
+            class="tag tag-accent"
+          >
+            admin
+          </span>
+          <span
+            class="tag tag-ok"
+          >
+            confirmed
+          </span>
+        </div>
+      </li>
+      <li>
+        <div
+          style="min-width: 0;"
+        >
+          <div
+            class="member-name"
+          >
+            bob
+          </div>
+          <div
+            class="member-email"
+          >
+            bob@x.com
+          </div>
+        </div>
+        <div
+          class="member-tags"
+        >
+          <span
+            class="tag"
+          >
+            member
+          </span>
+          <span
+            class="tag tag-warn"
+          >
+            unconfirmed
+          </span>
+          <button
+            aria-label="Resend confirmation to bob@x.com"
+            class="tag-btn"
+            type="button"
+          >
+            Resend
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>
+`;
