@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="1180" viewBox="0 0 390 1180">
+<title>Design — Member dashboard (mobile 390)</title>
+<defs><linearGradient id="grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d13350"/><stop offset="1" stop-color="#ae1d37"/></linearGradient><linearGradient id="bar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ca2d46"/><stop offset="1" stop-color="#ae1d37"/></linearGradient></defs>
+<rect width="390" height="1180" fill="#000000"/>
+<rect width="390" height="1180" fill="#000000"/>
+<g transform="translate(17.53 44.23) scale(0.26616)"><path fill="#f5f4f0" d="M30.50 0L-1.90 0Q-3.30 0-3.65-0.80Q-4-1.60-3.10-2.90L-3.10-2.90L40.60-67.30Q41.10-68.10 40.90-68.55Q40.70-69 39.90-69L39.90-69L30.90-69Q26.40-69 22.70-66.75Q19-64.50 15.50-57.70L15.50-57.70L12.90-52.70Q12.30-51.40 11.30-51.40L11.30-51.40Q10.70-51.40 10.35-51.85Q10-52.30 10.30-53.10L10.30-53.10L16.40-71.70Q16.80-72.80 17.25-73.40Q17.70-74 18.60-74L18.60-74Q19.40-74 19.90-73.50Q20.40-73 21.70-72.50Q23-72 26.10-72L26.10-72L48.20-72Q49.60-72 50-71.25Q50.40-70.50 49.50-69.10L49.50-69.10L5.80-4.70Q5.30-4 5.60-3.50Q5.90-3 6.70-3L6.70-3L17.70-3Q22.10-3 25.85-4.90Q29.60-6.80 32.40-12.80L32.40-12.80L36.50-21.50Q37.20-22.80 38.10-22.80L38.10-22.80Q38.60-22.80 38.95-22.35Q39.30-21.90 39.10-21.10L39.10-21.10L33.50-2.30Q32.90 0 30.50 0L30.50 0ZM55.50 0L37.50 0Q36.10 0 36.10-1L36.10-1Q36.10-2.10 38.10-2.40L38.10-2.40L40.10-2.70Q42.30-3 43.15-3.75Q44.00-4.50 44.40-6.60L44.40-6.60L58-65.40Q58.50-67.50 58-68.20Q57.50-68.90 55.50-69.30L55.50-69.30L53.50-69.70Q52.20-70 52.20-70.80L52.20-70.80Q52.20-72 54-72L54-72L72-72Q73.40-72 73.40-70.90L73.40-70.90Q73.40-69.80 71.60-69.60L71.60-69.60L69.20-69.30Q67-69 66.20-68.20Q65.40-67.40 64.90-65.30L64.90-65.30L59.10-40.20Q58.80-38.80 60.20-38.80L60.20-38.80L80-38.80Q81.40-38.80 81.70-40.20L81.70-40.20L87.50-65.30Q88-67.40 87.50-68.20Q87-69 85-69.30L85-69.30L82.80-69.60Q81.40-69.70 81.40-70.80L81.40-70.80Q81.40-72 83.30-72L83.30-72L101.30-72Q102.70-72 102.70-71L102.70-71Q102.70-69.90 100.70-69.60L100.70-69.60L98.70-69.30Q96.50-69 95.70-68.25Q94.90-67.50 94.40-65.40L94.40-65.40L80.80-6.60Q80.40-4.50 80.85-3.80Q81.30-3.10 83.30-2.70L83.30-2.70L85.30-2.30Q86.60-2 86.60-1.20L86.60-1.20Q86.60 0 84.80 0L84.80 0L66.80 0Q65.40 0 65.40-1.10L65.40-1.10Q65.40-2.20 67.20-2.40L67.20-2.40L69.60-2.70Q71.80-3 72.65-3.80Q73.50-4.60 73.90-6.70L73.90-6.70L80.30-34.40Q80.60-35.80 79.30-35.80L79.30-35.80L59.50-35.80Q58-35.80 57.70-34.40L57.70-34.40L51.30-6.70Q50.90-4.60 51.35-3.80Q51.80-3 53.80-2.70L53.80-2.70L56-2.40Q57.40-2.30 57.40-1.20L57.40-1.20Q57.40 0 55.50 0L55.50 0Z"/><path fill="#c8141e" d="M97.40 0.90L97.40 0.90Q95.30 0.90 94-0.45Q92.70-1.80 92.70-3.80L92.70-3.80Q92.70-6.40 94.50-8Q96.30-9.60 98.30-9.60L98.30-9.60Q100.30-9.60 101.65-8.25Q103-6.90 103-4.90L103-4.90Q103-2.30 101.20-0.70Q99.40 0.90 97.40 0.90Z"/></g>
+<rect x="57.477186311787065" y="25" width="1" height="19" rx="0" fill="#3a3320"/>
+<text x="70.47718631178707" y="40.8" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#f6f3ec" letter-spacing="0.17">Time Portal</text>
+<rect x="278" y="16" width="96" height="38" rx="19" fill="rgba(174,29,55,0.06)" stroke="rgba(174,29,55,0.4)" stroke-width="1"/>
+<text x="326" y="40" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f6f3ec" text-anchor="middle">Sign out</text>
+<text x="16" y="90" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="500" fill="#f6f3ec">Dashboard</text>
+<text x="116" y="90" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="500" fill="#f6f3ec">Insights</text>
+<line x1="16" y1="108" x2="374" y2="108" stroke="#3a3320" stroke-width="1"/>
+<text x="16" y="148" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="22" font-weight="550" fill="#f6f3ec">Welcome, Zubair</text>
+<rect x="16" y="168" width="358" height="250" rx="14" fill="#14171d" stroke="#23262e" stroke-width="1"/>
+<text x="36" y="200" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#b6ad98">Ready</text>
+<rect x="306" y="186" width="49.6" height="22" rx="11" fill="none" stroke="#6b6350" stroke-width="1"/>
+<text x="330.8" y="201" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6b6350" text-anchor="middle" letter-spacing="0.7">IDLE</text>
+<text x="36" y="266" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="44" font-weight="600" fill="#f6f3ec">0:00:00</text>
+<rect x="36" y="288" width="318" height="42" rx="9" fill="#0b0c0f" stroke="#23262e" stroke-width="1"/>
+<text x="50" y="314" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="400" fill="#6b6350">What are you working on?</text>
+<rect x="36" y="348" width="318" height="46" rx="23" fill="#ae1d37"/>
+<text x="195" y="376" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#fdeef0" text-anchor="middle">Start</text>
+<rect x="16" y="434" width="358" height="120" rx="14" fill="#14171d" stroke="#23262e" stroke-width="1"/>
+<text x="36" y="466" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#b6ad98">Approved this account</text>
+<text x="36" y="512" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#f6f3ec">12h 30m</text>
+<rect x="16" y="570" width="358" height="104" rx="14" fill="#14171d" stroke="#ae1d37" stroke-width="1"/>
+<text x="36" y="604" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#b6ad98" letter-spacing="0.7">TOP TIMER · 2026-09</text>
+<text x="36" y="632" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="20" font-weight="800" fill="#f6f3ec">Zubair Hussain</text>
+<text x="36" y="654" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#b6ad98">32h 10m approved</text>
+<text x="16" y="706" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="18" font-weight="550" fill="#f6f3ec">Recent entries</text>
+<rect x="16" y="722" width="358" height="72" rx="14" fill="#14171d" stroke="#23262e" stroke-width="1"/>
+<text x="34" y="752" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f6f3ec">Portfolio API refactor</text>
+<text x="34" y="776" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#b6ad98">2h 15m · 25/09</text>
+<rect x="270" y="747" width="71.80000000000001" height="22" rx="11" fill="none" stroke="#d9a520" stroke-width="1"/>
+<text x="305.9" y="762" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#d9a520" text-anchor="middle" letter-spacing="0.7">PENDING</text>
+<rect x="16" y="806" width="358" height="72" rx="14" fill="#14171d" stroke="#23262e" stroke-width="1"/>
+<text x="34" y="836" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f6f3ec">Admin console</text>
+<text x="34" y="860" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#b6ad98">3h 05m · 25/09</text>
+<rect x="270" y="831" width="79.2" height="22" rx="11" fill="none" stroke="#6fae5f" stroke-width="1"/>
+<text x="309.6" y="846" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6fae5f" text-anchor="middle" letter-spacing="0.7">APPROVED</text>
+<rect x="16" y="890" width="358" height="72" rx="14" fill="#14171d" stroke="#23262e" stroke-width="1"/>
+<text x="34" y="920" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f6f3ec">Code review</text>
+<text x="34" y="944" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#b6ad98">1h 20m · 25/09</text>
+<rect x="270" y="915" width="79.2" height="22" rx="11" fill="none" stroke="#6fae5f" stroke-width="1"/>
+<text x="309.6" y="930" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6fae5f" text-anchor="middle" letter-spacing="0.7">APPROVED</text>
+<rect x="16" y="974" width="358" height="72" rx="14" fill="#14171d" stroke="#23262e" stroke-width="1"/>
+<text x="34" y="1004" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#f6f3ec">Standup + planning</text>
+<text x="34" y="1028" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#b6ad98">0h 45m · 25/09</text>
+<rect x="270" y="999" width="79.2" height="22" rx="11" fill="none" stroke="#ca2d46" stroke-width="1"/>
+<text x="309.6" y="1014" font-family="'Hanken Grotesk', 'Neue Montreal', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#ca2d46" text-anchor="middle" letter-spacing="0.7">REJECTED</text>
+
+</svg>
