@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /insights/
+
+Sitemap: https://time-portal.detroonshah.workers.dev/sitemap.xml
