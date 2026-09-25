@@ -49,3 +49,6 @@ next-env.d.ts.bak
 /.wrangler/
 /.swc/
 *.key
+
+# local helper: one-commit-per-file script
+/commit-each-file.sh
