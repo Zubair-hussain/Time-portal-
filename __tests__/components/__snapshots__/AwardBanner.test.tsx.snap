@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AwardBanner matches snapshot with a winner 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <div
+      class="row"
+      style="gap: 14px;"
+    >
+      <span
+        aria-hidden="true"
+        style="font-size: 32px;"
+      >
+        🏆
+      </span>
+      <div>
+        <div
+          class="dim"
+          style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em;"
+        >
+          Top timer · 
+          2026-09
+        </div>
+        <div
+          style="font-size: 20px; font-weight: 800;"
+        >
+          Alice
+        </div>
+        <div
+          class="mono dim"
+        >
+          2h
+           approved
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AwardBanner matches snapshot with no winner 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <p
+      class="dim"
+      style="margin: 0px;"
+    >
+      No monthly award yet — approved hours determine the winner.
+    </p>
+  </div>
+</div>
+`;
