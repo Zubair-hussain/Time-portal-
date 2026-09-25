@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StatusChips matches snapshot 1`] = `
+<div>
+  <div
+    aria-label="Filter by status"
+    class="chips"
+    role="group"
+  >
+    <button
+      aria-pressed="true"
+      class="chip chip-on"
+      type="button"
+    >
+      <span
+        class="chip-label"
+      >
+        All
+      </span>
+      <span
+        class="chip-count"
+      >
+        10
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="chip"
+      type="button"
+    >
+      <span
+        class="chip-label"
+      >
+        Pending
+      </span>
+      <span
+        class="chip-count"
+      >
+        4
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="chip"
+      type="button"
+    >
+      <span
+        class="chip-label"
+      >
+        Approved
+      </span>
+      <span
+        class="chip-count"
+      >
+        5
+      </span>
+    </button>
+    <button
+      aria-pressed="false"
+      class="chip"
+      type="button"
+    >
+      <span
+        class="chip-label"
+      >
+        Rejected
+      </span>
+      <span
+        class="chip-count"
+      >
+        1
+      </span>
+    </button>
+  </div>
+</div>
+`;
