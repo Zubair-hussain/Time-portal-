@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommandSearch matches snapshot 1`] = `
+<div>
+  <div
+    class="cmd"
+  >
+    <div
+      class="cmd-box"
+    >
+      <svg
+        aria-hidden="true"
+        fill="none"
+        height="20"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+        width="20"
+      >
+        <circle
+          cx="11"
+          cy="11"
+          r="7"
+        />
+        <path
+          d="m20 20-3.5-3.5"
+          stroke-linecap="round"
+        />
+      </svg>
+      <input
+        aria-autocomplete="list"
+        aria-controls=":r0:"
+        aria-expanded="false"
+        aria-label="Search entries"
+        autocomplete="off"
+        placeholder="Search members, notes, status…"
+        role="combobox"
+        spellcheck="false"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
