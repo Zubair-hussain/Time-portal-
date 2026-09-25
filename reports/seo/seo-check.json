@@ -1,0 +1,169 @@
+{
+  "outDir": "out",
+  "passed": 27,
+  "total": 27,
+  "results": [
+    {
+      "area": "home",
+      "name": "html lang attribute",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "title present, 10–60 chars",
+      "ok": true,
+      "detail": "\"Time Portal | Zubair Hussain\" (28)"
+    },
+    {
+      "area": "home",
+      "name": "meta description 50–160 chars",
+      "ok": true,
+      "detail": "98 chars"
+    },
+    {
+      "area": "home",
+      "name": "viewport meta",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "canonical link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "theme-color meta",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "favicon link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "Open Graph title/description",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "indexable (no noindex)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "exactly one <h1>",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "home",
+      "name": "all <img> have alt",
+      "ok": true,
+      "detail": "0 images"
+    },
+    {
+      "area": "private",
+      "name": "dashboard/index.html exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "private",
+      "name": "dashboard/index.html has noindex",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "private",
+      "name": "insights/index.html exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "private",
+      "name": "insights/index.html has noindex",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "private",
+      "name": "time/Portal/admIn/index.html exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "private",
+      "name": "time/Portal/admIn/index.html has noindex",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "crawl",
+      "name": "robots.txt exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "crawl",
+      "name": "robots.txt references sitemap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "crawl",
+      "name": "robots.txt disallows private pages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "crawl",
+      "name": "robots.txt does not reveal admin path",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "crawl",
+      "name": "sitemap.xml has absolute <loc> URLs",
+      "ok": true,
+      "detail": "https://time-portal.detroonshah.workers.dev/"
+    },
+    {
+      "area": "crawl",
+      "name": "sitemap lists no private pages",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "assets",
+      "name": "favicon.svg shipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "assets",
+      "name": "logo.svg shipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "assets",
+      "name": "404 page shipped",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "assets",
+      "name": "Cloudflare _headers shipped",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}
