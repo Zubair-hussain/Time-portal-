@@ -1,0 +1,78 @@
+{
+  "$description": "Time Portal design tokens (W3C Design Tokens format). Import into Figma with the Tokens Studio plugin, or copy into Figma Variables. Source of truth: src/app/globals.css.",
+  "color": {
+    "bg": { "$type": "color", "$value": "#000000" },
+    "surface": {
+      "card": { "$type": "color", "$value": "#14171d" },
+      "secondary": { "$type": "color", "$value": "#1b1f27" },
+      "input": { "$type": "color", "$value": "#0b0c0f" },
+      "glass": { "$type": "color", "$value": "#0f0f12b8" }
+    },
+    "border": {
+      "soft": { "$type": "color", "$value": "#23262e" },
+      "warm": { "$type": "color", "$value": "#3a3320" }
+    },
+    "text": {
+      "primary": { "$type": "color", "$value": "#f6f3ec" },
+      "dim": { "$type": "color", "$value": "#b6ad98" },
+      "faint": { "$type": "color", "$value": "#6b6350" }
+    },
+    "accent": {
+      "default": { "$type": "color", "$value": "#ae1d37" },
+      "hover": { "$type": "color", "$value": "#ca2d46" },
+      "on": { "$type": "color", "$value": "#fdeef0" }
+    },
+    "brand": {
+      "ink": { "$type": "color", "$value": "#f5f4f0", "$description": "ZH. letters (portfolio header)" },
+      "crimson": { "$type": "color", "$value": "#c8141e", "$description": "ZH. dot (portfolio --brand-solid)" },
+      "tile": { "$type": "color", "$value": "#ff0000", "$description": "Z app-icon tile (portfolio favicon)" }
+    },
+    "status": {
+      "approved": { "$type": "color", "$value": "#6fae5f" },
+      "pending": { "$type": "color", "$value": "#d9a520" },
+      "rejected": { "$type": "color", "$value": "#ca2d46" }
+    }
+  },
+  "font": {
+    "family": {
+      "ui": { "$type": "fontFamily", "$value": ["Neue Montreal", "Hanken Grotesk", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"], "$description": "Upwork uses Neue Montreal (paid); Hanken Grotesk is the free Google Fonts match used in the app." },
+      "brand": { "$type": "fontFamily", "$value": ["Instrument Serif"], "$description": "Only for the ZH. mark, which ships as outlined vectors." }
+    },
+    "weight": {
+      "regular": { "$type": "fontWeight", "$value": 400 },
+      "medium": { "$type": "fontWeight", "$value": 500 },
+      "heading": { "$type": "fontWeight", "$value": 550 },
+      "semibold": { "$type": "fontWeight", "$value": 600 },
+      "bold": { "$type": "fontWeight", "$value": 700 }
+    }
+  },
+  "typography": {
+    "display": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "40px", "fontWeight": 550, "lineHeight": 1.1, "letterSpacing": "0.005em" } },
+    "h1": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "24px", "fontWeight": 550, "lineHeight": 1.1, "letterSpacing": "0.005em" } },
+    "h2": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "18px", "fontWeight": 550, "lineHeight": 1.1, "letterSpacing": "0.005em" } },
+    "signin-title": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "34px", "fontWeight": 700, "lineHeight": 1.1, "letterSpacing": "-0.02em" } },
+    "stat": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "34px", "fontWeight": 600, "lineHeight": 1.1, "letterSpacing": "0" } },
+    "body": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "15px", "fontWeight": 400, "lineHeight": 1.45, "letterSpacing": "0.02em" } },
+    "label": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "14px", "fontWeight": 600, "lineHeight": 1.3, "letterSpacing": "0.01em" } },
+    "caption": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "13px", "fontWeight": 400, "lineHeight": 1.35, "letterSpacing": "0.02em" } },
+    "eyebrow": { "$type": "typography", "$value": { "fontFamily": "{font.family.ui}", "fontSize": "12px", "fontWeight": 600, "lineHeight": 1.2, "letterSpacing": "0.12em", "textCase": "uppercase" } }
+  },
+  "radius": {
+    "sm": { "$type": "dimension", "$value": "9px" },
+    "md": { "$type": "dimension", "$value": "14px" },
+    "lg": { "$type": "dimension", "$value": "18px" },
+    "card-signin": { "$type": "dimension", "$value": "24px" },
+    "pill": { "$type": "dimension", "$value": "999px" }
+  },
+  "spacing": {
+    "container": { "$type": "dimension", "$value": "1080px" },
+    "gutter": { "$type": "dimension", "$value": "20px" },
+    "grid-gap": { "$type": "dimension", "$value": "16px" },
+    "card-padding": { "$type": "dimension", "$value": "22px" }
+  },
+  "breakpoint": {
+    "stack-cards": { "$type": "dimension", "$value": "720px" },
+    "stack-login": { "$type": "dimension", "$value": "820px" },
+    "stack-admin": { "$type": "dimension", "$value": "1000px" }
+  }
+}
