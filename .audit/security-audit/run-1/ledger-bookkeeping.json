@@ -1,0 +1,62 @@
+{
+  "hunter-data": {
+    "hardening": [
+      "supabase/admin-create-user.sql:30 and :116 set search_path with public before extensions/auth and call crypt/gen_salt/gen_random_uuid unqualified (lines 36,77,89); qualify as extensions.crypt/extensions.gen_salt and use search_path = '' or pg_catalog, pg_temp-last to remove the shadowing class.",
+      "supabase/schema.sql:37-40 is_admin() trusts the JWT app_metadata.role claim, so an admin demoted in auth.users keeps admin RLS/RPC rights until the access token expires; keep JWT expiry short or check auth.users in is_admin() if immediate revocation matters.",
+      "supabase/schema.sql:18-21 has no CHECK constraints (duration_seconds >= 0 and bounded, ended_at >= started_at); add them with a BEFORE INSERT OR UPDATE trigger that forces status='pending' for non-admin inserts, freezes approved rows for members, and derives duration_seconds server-side from ended_at - started_at.",
+      "supabase/functions/admin-create-user/index.ts:52 returns raw GoTrue error.message to the (admin) caller, and index.ts:9 imports an unpinned esm.sh URL; neither is reachable by a lower-trust principal and the function is not called from src/.",
+      "supabase/setup.sql:110-127 publishes time_entries to supabase_realtime with replica identity full although no client subscribes; drop it from the publication if unused, which shrinks the read surface to PostgREST alone.",
+      "supabase/admin-create-user.sql:145-149 runs unconditional lowercasing UPDATEs on auth.users/auth.identities every time the file is run; if two accounts differ only by case, this can collide or merge identities. Run it once, deliberately, after a duplicate check."
+    ],
+    "uncovered": [
+      {
+        "surface": "auth.updateUser user_metadata.display_name (GoTrue, any member)",
+        "boundary": "admin_list_users display_name rendering in admin console review queue / leaderboard / award (supabase/admin-create-user.sql:126, src/app/time/Portal/admIn/page.tsx:61,66)",
+        "subsystem": "All in-scope subsystems (quick profile)",
+        "attack_class": "Business logic",
+        "starting_paths": [
+          "supabase/admin-create-user.sql",
+          "src/app/time/Portal/admIn/page.tsx",
+          "src/lib/auth.ts",
+          "src/context/AuthContext.tsx",
+          "src/components/AdminReviewTable.tsx"
+        ],
+        "reason": "display_name is read from user-writable raw_user_meta_data and is the primary label the admin uses to identify whose entries they approve and who won the award; a member can rename themselves to another member's name or to an admin-looking label. That identity-display integrity issue (not XSS, which a peer owns) has no current coverage unit."
+      }
+    ],
+    "candidates": [
+      "supabase/schema.sql:time_entries:insert-status-unguarded",
+      "supabase/schema.sql:time_entries:approved-row-quantities-mutable"
+    ]
+  },
+  "hunter-client": {
+    "hardening": [
+      "public/_headers:7 allows script-src 'unsafe-inline'; with persistSession tokens in localStorage (src/lib/supabaseClient.ts:23) any future HTML-injection sink would become token theft. Consider hash/nonce-based CSP (header application itself is peer-owned).",
+      "src/components/Nav.tsx:34 calls signOut() with void and no error handling; auth-js returns an error and keeps the local session on network failure, so a failed logout on a shared device silently leaves the session in localStorage. Surface the error or clear local storage (scope 'local') as a fallback.",
+      "Role/admin state is read from JWT claims both client-side (src/lib/jwt.ts:65-66) and server-side via is_admin(); a demoted admin keeps admin until access-token expiry. No demotion feature exists in the app; relevant to the peer is_admin unit.",
+      "src/lib/entries.ts:41 sanitizeNote is client-only; notes inserted directly via PostgREST are unsanitised but are rendered as escaped JSX text, so no current sink.",
+      "src/lib/emailCheck.ts:12 comment says the app does not send confirmation emails, contradicting AddUserForm/sendConfirmationEmail; stale documentation.",
+      "Admin-created temporary password is shown in plain text in the DOM (src/components/AddUserForm.tsx:191,227); acceptable for an admin-only view but ensure users are forced to change it on first login."
+    ],
+    "uncovered": [],
+    "candidates": [
+      "user-metadata-display-name/admin-console-identity-spoofing"
+    ]
+  },
+  "hunter-repo": {
+    "hardening": [
+      "src/lib/userSql.ts:91-99 generateTempPassword uses Math.random and a fixed 'A9z' suffix (~52 bits of entropy); use crypto.getRandomValues with rejection sampling and randomize character-class positions.",
+      "src/lib/userSql.ts:24-88 buildCreateUserSql is dead code (tests only) and line 30 interpolates the unescaped email into a SQL comment line where a newline breaks out; delete it or strip CR/LF.",
+      "supabase/functions/admin-create-user/index.ts:9 imports https://esm.sh/@supabase/supabase-js@2 with a floating major and no lock; pin an exact version (or npm: specifier with deno.lock) if the function is ever deployed.",
+      "Upgrade next 15.1.0 / react 19.0.0 to patched releases; published server-side advisories are not reachable under output: 'export' but would become reachable if export mode or hosting changed.",
+      ".gitignore does not exclude /.wrangler/, /.swc/ or *.key; wrangler dev state can hold local bindings.",
+      "public/_headers CSP keeps script-src 'unsafe-inline' and connect-src https://*.supabase.co (any Supabase project), weakening CSP as a backstop against script injection/exfiltration; consider hashes/nonces and pinning the exact project host.",
+      "ci.yml:106-112 live header smoke test checks only `/`; add /time/Portal/admIn/ to assert Cache-Control: no-store and X-Robots-Tag on signed-in routes.",
+      "The gitleaks job (security.yml:83) is unlikely to flag the plaintext SQL password in supabase/setup.sql with default rules; add a custom rule or allowlist review so secret scanning covers this file."
+    ],
+    "uncovered": [],
+    "candidates": [
+      "supabase/setup.sql:bootstrap-admin-hardcoded-password"
+    ]
+  }
+}
