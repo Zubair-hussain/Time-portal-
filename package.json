@@ -1,0 +1,57 @@
+{
+  "name": "time-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Time Portal — a secure, invite-only time-tracking portal with JWT auth, weekly/monthly insights, and an admin award system. Built with Next.js (static export) + TypeScript + Supabase.",
+  "author": "Zubair Hussain <hr070203@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --runInBand",
+    "preview:cf": "wrangler dev --port 8787",
+    "deploy": "next build && wrangler deploy",
+    "audit:security": "npm audit --omit=dev --audit-level=high",
+    "audit:lighthouse": "lhci autorun",
+    "audit:seo": "node scripts/seo-check.mjs out"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "clsx": "^2.1.1",
+    "gsap": "^3.15.0",
+    "next": "^15.5.26",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "recharts": "^2.13.0"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.11.0",
+    "eslint-config-next": "^15.5.26",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2",
+    "wrangler": "^4.86.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "overrides": {
+    "postcss": "^8.5.28"
+  }
+}
