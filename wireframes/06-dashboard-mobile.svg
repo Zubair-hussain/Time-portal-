@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="1180" viewBox="0 0 750 1180">
+<title>Wireframe — Member dashboard (mobile 390)</title>
+
+<rect width="750" height="1180" fill="#fafafa"/>
+<rect width="390" height="1180" fill="#ffffff" stroke="#d0d0d0"/>
+<rect x="16" y="24" width="29.47718631178707" height="21" rx="3" fill="none" stroke="#222222" stroke-width="1"/>
+<text x="30.738593155893533" y="38.28" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="11.55" font-weight="700" fill="#222222" text-anchor="middle">ZH.</text>
+<rect x="57.477186311787065" y="25" width="1" height="19" rx="0" fill="#c9c9c9"/>
+<text x="70.47718631178707" y="40.8" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#222222" letter-spacing="0.17">Time Portal</text>
+<rect x="278" y="16" width="96" height="38" rx="19" fill="#ffffff" stroke="#222222" stroke-width="1"/>
+<text x="326" y="40" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222" text-anchor="middle">Sign out</text>
+<text x="16" y="90" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="500" fill="#222222">Dashboard</text>
+<text x="116" y="90" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="500" fill="#222222">Insights</text>
+<line x1="16" y1="108" x2="374" y2="108" stroke="#c9c9c9" stroke-width="1"/>
+<text x="16" y="148" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="22" font-weight="550" fill="#222222">Welcome, Zubair</text>
+<rect x="16" y="168" width="358" height="250" rx="14" fill="#f3f3f3" stroke="#c9c9c9" stroke-width="1"/>
+<text x="36" y="200" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f">Ready</text>
+<rect x="306" y="186" width="49.6" height="22" rx="11" fill="none" stroke="#a3a3a3" stroke-width="1"/>
+<text x="330.8" y="201" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#a3a3a3" text-anchor="middle" letter-spacing="0.7">IDLE</text>
+<text x="36" y="266" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="44" font-weight="600" fill="#222222">0:00:00</text>
+<rect x="36" y="288" width="318" height="42" rx="9" fill="#ffffff" stroke="#c9c9c9" stroke-width="1"/>
+<text x="50" y="314" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="400" fill="#a3a3a3">What are you working on?</text>
+<rect x="36" y="348" width="318" height="46" rx="23" fill="#3d3d3d"/>
+<text x="195" y="376" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#ffffff" text-anchor="middle">Start</text>
+<rect x="16" y="434" width="358" height="120" rx="14" fill="#f3f3f3" stroke="#c9c9c9" stroke-width="1"/>
+<text x="36" y="466" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f">Approved this account</text>
+<text x="36" y="512" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#222222">12h 30m</text>
+<rect x="16" y="570" width="358" height="104" rx="14" fill="#f3f3f3" stroke="#3d3d3d" stroke-width="1"/>
+<text x="36" y="604" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#6f6f6f" letter-spacing="0.7">TOP TIMER · 2026-09</text>
+<text x="36" y="632" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="20" font-weight="800" fill="#222222">Zubair Hussain</text>
+<text x="36" y="654" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#6f6f6f">32h 10m approved</text>
+<text x="16" y="706" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="18" font-weight="550" fill="#222222">Recent entries</text>
+<rect x="16" y="722" width="358" height="72" rx="14" fill="#f3f3f3" stroke="#c9c9c9" stroke-width="1"/>
+<text x="34" y="752" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222">Portfolio API refactor</text>
+<text x="34" y="776" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f">2h 15m · 25/09</text>
+<rect x="270" y="747" width="71.80000000000001" height="22" rx="11" fill="none" stroke="#6f6f6f" stroke-width="1"/>
+<text x="305.9" y="762" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6f6f6f" text-anchor="middle" letter-spacing="0.7">PENDING</text>
+<rect x="16" y="806" width="358" height="72" rx="14" fill="#f3f3f3" stroke="#c9c9c9" stroke-width="1"/>
+<text x="34" y="836" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222">Admin console</text>
+<text x="34" y="860" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f">3h 05m · 25/09</text>
+<rect x="270" y="831" width="79.2" height="22" rx="11" fill="none" stroke="#6f6f6f" stroke-width="1"/>
+<text x="309.6" y="846" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6f6f6f" text-anchor="middle" letter-spacing="0.7">APPROVED</text>
+<rect x="16" y="890" width="358" height="72" rx="14" fill="#f3f3f3" stroke="#c9c9c9" stroke-width="1"/>
+<text x="34" y="920" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222">Code review</text>
+<text x="34" y="944" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f">1h 20m · 25/09</text>
+<rect x="270" y="915" width="79.2" height="22" rx="11" fill="none" stroke="#6f6f6f" stroke-width="1"/>
+<text x="309.6" y="930" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6f6f6f" text-anchor="middle" letter-spacing="0.7">APPROVED</text>
+<rect x="16" y="974" width="358" height="72" rx="14" fill="#f3f3f3" stroke="#c9c9c9" stroke-width="1"/>
+<text x="34" y="1004" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="15" font-weight="600" fill="#222222">Standup + planning</text>
+<text x="34" y="1028" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#6f6f6f">0h 45m · 25/09</text>
+<rect x="270" y="999" width="79.2" height="22" rx="11" fill="none" stroke="#6f6f6f" stroke-width="1"/>
+<text x="309.6" y="1014" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" fill="#6f6f6f" text-anchor="middle" letter-spacing="0.7">REJECTED</text>
+<circle cx="366" cy="90" r="11" fill="#2f6fed"/>
+<text x="366" y="94" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+<circle cx="12" cy="590" r="11" fill="#2f6fed"/>
+<text x="12" y="594" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">2</text>
+<circle cx="12" cy="758" r="11" fill="#2f6fed"/>
+<text x="12" y="762" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+<g transform="translate(414 24)"><text font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#222" y="0">Notes</text><g transform="translate(0 28)"><circle cx="11" cy="-4" r="11" fill="#2f6fed"/><text x="11" y="0" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">1</text><foreignObject x="30" y="-18" width="290" height="44"><div xmlns="http://www.w3.org/1999/xhtml" style="font:13px/1.35 'Hanken Grotesk', Helvetica, Arial, sans-serif;color:#333">Nav wraps to a second row on phones.</div></foreignObject></g><g transform="translate(0 74)"><circle cx="11" cy="-4" r="11" fill="#2f6fed"/><text x="11" y="0" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">2</text><foreignObject x="30" y="-18" width="290" height="44"><div xmlns="http://www.w3.org/1999/xhtml" style="font:13px/1.35 'Hanken Grotesk', Helvetica, Arial, sans-serif;color:#333">Cards stack to one column under 720px.</div></foreignObject></g><g transform="translate(0 120)"><circle cx="11" cy="-4" r="11" fill="#2f6fed"/><text x="11" y="0" font-family="'Hanken Grotesk', Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">3</text><foreignObject x="30" y="-18" width="290" height="44"><div xmlns="http://www.w3.org/1999/xhtml" style="font:13px/1.35 'Hanken Grotesk', Helvetica, Arial, sans-serif;color:#333">Table rows become cards on small screens (suggested).</div></foreignObject></g></g>
+</svg>
