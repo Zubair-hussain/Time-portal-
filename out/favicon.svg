@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-labelledby="t">
+  <title id="t">Zubair Hussain</title>
+  <!-- Favicon from zubair-hussain-portfolio.detroonshah.workers.dev/icons/favicon.svg,
+       with the Arial Bold "Z" outlined to a path. -->
+  <rect width="32" height="32" rx="8" fill="#ff0000"/>
+  <path fill="#ffffff" d="M21.74 22.79L10.11 22.79L10.11 20.18L17.63 10.89L10.96 10.89L10.96 8.47L21.43 8.47L21.43 10.72L13.59 20.37L21.74 20.37L21.74 22.79Z"/>
+</svg>
