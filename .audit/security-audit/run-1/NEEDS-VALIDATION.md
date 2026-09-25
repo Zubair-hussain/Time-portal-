@@ -1,0 +1,183 @@
+# NEEDS VALIDATION — Time Portal run-1
+
+Source-grounded leads that an independent verifier could neither confirm nor refute from source alone.
+**No severity** is assigned. Each lists the exact blocker and a bounded way to resolve it. None of the plans
+sends audit traffic to production.
+
+## 1. Members can rewrite duration and timestamps of already-approved entries, inflating award totals after review
+
+`supabase/schema.sql:time_entries:approved-row-quantities-mutable`
+
+An authenticated member (app_metadata.role != 'admin') can change duration_seconds, started_at and ended_at on their own time_entries rows after an admin has approved them. The member UPDATE policy "update own not status" (supabase/schema.sql:58-60, identical at supabase/setup.sql:76-77) checks only user_id = auth.uid() in USING and WITH CHECK, with no column restriction and no condition on the row's review state. The only other control, the BEFORE UPDATE trigger enforce_status_rules (schema.sql:73-88, setup.sql:88-103), raises only when a non-admin changes status. After approval, the owner can PATCH /rest/v1/time_entries?id=eq.<own approved id> with a body such as {"duration_seconds":2147483647} (valid for the integer column at schema.sql:20) or move started_at into the current month. Status stays 'approved' and no exception fires. The admin console (src/app/time/Portal/admIn/page.tsx:74-75) then feeds the new values into computeMonthlyAward and monthlyLeaderboard, which sum duration_seconds of approved, ended rows by started_at month (src/lib/awards.ts:18-23,54-58) and clamp only negative or NaN values. The legitimate client already writes a browser-computed duration_seconds (src/lib/entries.ts:53-56), so the server never derives or freezes the reviewed quantity. The affected resource is the integrity of admin-reviewed time totals and the monthly Top Timer award: other members lose rank and approval stops meaning anything. Members cannot read or change other members' rows through this path, because the user_id USING and WITH CHECK clauses hold. No SQL file, trigger, CHECK constraint or column GRANT/REVOKE in the repository blocks the update. Whether the deployed database matches these files, and an observed result, are still unverified.
+
+**Claimed root cause.** Approval is recorded only on status. The reviewed quantities (duration_seconds, started_at, ended_at) stay owner-writable through the "update own not status" policy, which constrains only user_id and has no column or review-state condition. The enforce_status_rules trigger compares only new.status with old.status, so approval does not freeze what was approved.
+
+**Source trace**
+
+| Step | Location | Scope | What happens |
+| --- | --- | --- | --- |
+| entrypoint | `src/lib/entries.ts:56` | stopEntry | The authenticated member client sends a PostgREST update({ ended_at, duration_seconds }) with a browser-computed duration. Any member can send the same PATCH on /rest/v1/time_entries directly with arbitrary values for any of their own rows, including approved ones. |
+| propagation | `supabase/schema.sql:59` | policy "update own not status" | USING (user_id = auth.uid()) and WITH CHECK (user_id = auth.uid()) at line 60. There is no column restriction or status-state condition, despite the policy name. Identical at supabase/setup.sql:77. |
+| propagation | `supabase/schema.sql:78` | enforce_status_rules | The BEFORE UPDATE trigger raises only when not is_admin() and new.status is distinct from old.status, so duration and timestamp edits on approved rows pass. Identical at supabase/setup.sql:93. |
+| sink | `src/lib/awards.ts:58` | monthlyLeaderboard | Accumulates the mutated duration_seconds of approved, ended rows (bucketed by the started_at month at line 57) into leaderboard totals. computeMonthlyAward does the same at line 23. Both are called from the admin console at src/app/time/Portal/admIn/page.tsx:74-75. |
+
+**Evidence**
+
+- `supabase/schema.sql:60` — with check (user_id = auth.uid()) sets no restriction on duration_seconds, started_at or ended_at, and no condition on the row's status.
+- `supabase/schema.sql:78` — if not public.is_admin() and new.status is distinct from old.status: only status transitions are guarded.
+- `supabase/schema.sql:20` — duration_seconds integer has no CHECK constraint; any value up to 2147483647 is accepted.
+- `supabase/setup.sql:77` — The bootstrap script's member update policy is identical (user_id only).
+- `supabase/setup.sql:93` — The bootstrap script's trigger has the same status-only comparison.
+- `src/lib/entries.ts:53` — Duration is computed client-side (durationBetween) and written as-is at line 56; the server does not derive it.
+- `src/lib/awards.ts:23` — computeMonthlyAward adds normalizeSeconds(entry.durationSeconds) for approved, ended entries in the month; normalizeSeconds clamps only negative or NaN values.
+- `src/app/time/Portal/admIn/page.tsx:75` — The admin console builds the leaderboard (and the award at line 74) from listAllEntries, i.e. from stored row values.
+
+**Blockers (why this is not confirmed)**
+
+- This Windows host has no OS-enforced sandbox, so a local Postgres fixture could not run the dummy-member update. With no observed result, confirmed is unavailable.
+- Not visible in source: which SQL files (schema.sql or setup.sql) were applied to the deployed Supabase project, and whether role authenticated holds column-level UPDATE on public.time_entries.duration_seconds, started_at and ended_at. The repository has no REVOKE or column GRANT for the table, and Supabase defaults grant table-wide UPDATE to authenticated. An out-of-repo trigger would also need to be ruled out.
+
+**Bounded local check**
+
+In a sandboxed local Postgres with no network, auth.uid()/auth.jwt() stubs and supabase/setup.sql applied, create dummy member M and dummy admin A. As A (request.jwt.claims with app_metadata.role='admin'), insert a row for M with started_at and ended_at in the current month and duration_seconds=3600, then update it to status='approved'. Switch request.jwt.claims to M (sub=M, role authenticated, no admin role) and run: update public.time_entries set duration_seconds=2147483647 where id='<row>' returning status, duration_seconds. The vulnerable result is one returned row with status 'approved', duration_seconds 2147483647 and no exception. As a control, run update ... set status='pending' as M; it should raise 'Only admins may change entry status'. Stop after this single-row update.
+
+**Owner-observed deployment check**
+
+The owner, not the audit, runs read-only catalog queries in the production Supabase SQL editor. (1) select tgname, pg_get_triggerdef(oid) from pg_trigger where tgrelid='public.time_entries'::regclass and not tgisinternal; confirms only trg_status_guard exists. (2) select polname, pg_get_expr(polqual, polrelid), pg_get_expr(polwithcheck, polrelid) from pg_policy where polrelid='public.time_entries'::regclass; confirms the member UPDATE policy constrains only user_id. (3) select column_name, privilege_type from information_schema.column_privileges where table_schema='public' and table_name='time_entries' and grantee='authenticated' and privilege_type='UPDATE'; shows whether duration_seconds, started_at and ended_at are updatable. Any behavioural check uses a dummy member and one dummy approved row in a non-production staging project, never production.
+
+---
+
+## 2. Members can insert pre-approved time entries with arbitrary duration, skipping admin review and inflating the monthly award
+
+`supabase/schema.sql:time_entries:insert-status-unguarded`
+
+The status guard enforce_status_rules is attached only BEFORE UPDATE, and the time_entries INSERT RLS policy checks only user_id = auth.uid(). An authenticated member holding the public anon key and their own session can bypass startEntry (which hard-codes status 'pending') and POST directly to /rest/v1/time_entries with {user_id: <self>, status: 'approved', started_at: <current month>, ended_at: <any>, duration_seconds: 2147483647}. No source-visible trigger, CHECK constraint or column restriction rejects that row. The admin console loads it through listAllEntries, and computeMonthlyAward and monthlyLeaderboard both count it, because they sum duration_seconds of any row with status 'approved' and an ended_at. The member would appear as the monthly Top Timer and at the top of the leaderboard without any admin approving the row, and the row would never enter the admin's pending queue. schema.sql's own comments confirm the review-state guard exists only on UPDATE. Not visible in source: which SQL was applied to the deployed project, and the table or column grants for the authenticated role.
+
+**Claimed root cause.** The review invariant (only admins may put an entry into 'approved' or 'rejected') is enforced only on UPDATE, by trigger trg_status_guard BEFORE UPDATE calling enforce_status_rules. The INSERT path (RLS policy 'insert own' with check (user_id = auth.uid())) accepts client-supplied status, duration_seconds, started_at and ended_at, and no INSERT trigger, CHECK constraint or column privilege restricts those columns. A member can therefore create rows that are already approved and have any duration.
+
+**Source trace**
+
+| Step | Location | Scope | What happens |
+| --- | --- | --- | --- |
+| entrypoint | `src/lib/entries.ts:41` | startEntry | The client sends status explicitly in a PostgREST insert on time_entries. The UI always sends 'pending', but any authenticated member can send the same insert straight to /rest/v1/time_entries with status 'approved' and their own duration_seconds, started_at and ended_at. |
+| propagation | `supabase/schema.sql:54` | policy "insert own" | The INSERT with check constrains only user_id = auth.uid(). It does not check status, duration_seconds, started_at or ended_at. supabase/setup.sql:73 is identical. |
+| propagation | `supabase/schema.sql:87` | trigger trg_status_guard | The status guard is declared 'before update' only, so enforce_status_rules never runs on INSERT. supabase/setup.sql:102 is identical. |
+| propagation | `src/app/time/Portal/admIn/page.tsx:74` | AdminInner | The admin console computes the monthly award (and the leaderboard at line 75) from all rows returned by listAllEntries (line 32). |
+| sink | `src/lib/awards.ts:23` | computeMonthlyAward | Sums normalizeSeconds(duration_seconds) for every row with status 'approved' and an ended_at in the month, so the self-inserted, inflated row counts and the member wins the award. monthlyLeaderboard does the same at line 58. |
+
+**Evidence**
+
+- `supabase/schema.sql:54` — 'for insert with check (user_id = auth.uid())' has no status or duration constraint.
+- `supabase/schema.sql:87` — The trigger is 'before update on public.time_entries', so INSERT is not covered. The comment at line 72 says the trigger is meant to stop members from self-approving.
+- `supabase/schema.sql:22` — status is entry_status not null default 'pending'. The default applies only when the column is omitted, and no CHECK limits inserts to 'pending'. duration_seconds (line 20) is an unbounded integer.
+- `supabase/setup.sql:102` — The bootstrap script repeats the BEFORE UPDATE-only trigger and the user_id-only INSERT policy (line 73). No SQL file in the repository adds an INSERT trigger, CHECK or column GRANT/REVOKE on time_entries.
+- `src/lib/awards.ts:18` — The award counts any row whose status is 'approved' and that has an endedAt, with no check on where the approval came from.
+- `src/lib/time.ts:7` — normalizeSeconds clamps only negative or non-finite values, so large positive durations pass unchanged.
+
+**Blockers (why this is not confirmed)**
+
+- No OS-enforced sandbox is available on this host, so the decisive observation (a bounded local Postgres/PostgREST insert as a dummy member) could not be run.
+- Table and column privileges for role authenticated on public.time_entries are not in any repository SQL. Supabase's default grants on public tables normally allow INSERT on all columns, but the deployed grants cannot be observed from source.
+- Source does not show which SQL files (schema.sql or setup.sql) were applied to the deployed project, or whether an out-of-repo migration later added an INSERT trigger, CHECK constraint or column-level REVOKE on status or duration_seconds.
+
+**Bounded local check**
+
+In a sandboxed, offline local Supabase/Postgres with the auth schema, apply supabase/setup.sql and create two dummy users: member M (app_metadata.role='member') and admin A. In one transaction: set local role authenticated; select set_config('request.jwt.claims', '{"sub":"<M>","role":"authenticated","app_metadata":{"role":"member"}}', true); insert into public.time_entries(user_id,status,started_at,ended_at,duration_seconds) values ('<M>','approved',now(),now(),2147483647) returning status, duration_seconds. The vulnerable result is one row with status 'approved' and duration 2147483647 and no error. As a control, have the same session update an existing pending row to status 'approved'; it should raise 'Only admins may change entry status'. Finally, pass the returned row (mapped to TimeEntry) to computeMonthlyAward(monthKey(now), rows, users) in a unit test and check that M is the winner.
+
+**Owner-observed deployment check**
+
+The owner runs read-only queries in the production Supabase SQL editor. (1) select tgname, tgtype, pg_get_triggerdef(oid) from pg_trigger where tgrelid='public.time_entries'::regclass and not tgisinternal; (2) select conname, pg_get_constraintdef(oid) from pg_constraint where conrelid='public.time_entries'::regclass and contype='c'; (3) select has_column_privilege('authenticated','public.time_entries','status','INSERT'), has_column_privilege('authenticated','public.time_entries','duration_seconds','INSERT'); (4) select polname, pg_get_expr(polwithcheck, polrelid) from pg_policy where polrelid='public.time_entries'::regclass. The path is open if the only status trigger is BEFORE UPDATE, no CHECK covers status or duration, authenticated has INSERT on those columns, and the insert policy checks only user_id. Optionally confirm in a staging project with a dummy member account. No audit traffic is sent to production.
+
+---
+
+## 3. Plaintext bootstrap admin password in supabase/setup.sql grants full Time Portal admin
+
+`supabase/setup.sql:bootstrap-admin-hardcoded-password`
+
+supabase/setup.sql sits in the repository tree and is not excluded by .gitignore. This checkout has no .git directory, so whether it is tracked or pushed cannot be confirmed. The file embeds the bootstrap admin email (lines 12, 132, 139, 200) and a weak plaintext password, <committed literal> (10 lowercase letters and digits), in four places (lines 13, 132, 140, 200). It provisions that account in auth.users with a bcrypt hash of the literal and app_metadata.role='admin' (lines 161-162), and on re-run resets an existing account's password to the literal and re-asserts role admin (lines 181-185, 196). GoTrue password sign-in needs only the public anon key (src/lib/auth.ts:38). Anyone who has the file, against a deployment that still accepts the literal, can therefore obtain an admin JWT that satisfies public.is_admin() (setup.sql:59). That JWT can read, update and delete all time_entries (lines 69, 81, 85), change status and so decide the monthly award (trigger bypass at line 93), and create more admins or list users via admin_create_user/admin_list_users (admin-create-user.sql:34,38,119). README.md:377-378 advises editing the credentials first, but the shipped defaults are working values. The owner states the credential is intentional for internal use. Exposure depends on who can read the file and whether production still accepts the literal.
+
+**Claimed root cause.** A privileged bootstrap credential is hardcoded as a literal in a committed-intent SQL script (setup.sql:140) instead of being supplied at run time or rotated on first use. The script's existing-account branch (setup.sql:181-182) also forcibly resets the admin password to that literal on every re-run, undoing any rotation.
+
+**Source trace**
+
+| Step | Location | Scope | What happens |
+| --- | --- | --- | --- |
+| entrypoint | `supabase/setup.sql:140` | DO block, section 6 admin bootstrap | admin_pass text := '<committed literal>'. The plaintext password is stored as a literal and repeated in comments at lines 13, 132 and 200, next to the admin email at line 139. |
+| propagation | `supabase/setup.sql:161` | insert into auth.users (new-account branch) | crypt(admin_pass, gen_salt('bf')) stores a bcrypt hash of the committed literal as the account's sign-in password, with email_confirmed_at = now(). |
+| propagation | `supabase/setup.sql:162` | insert into auth.users (new-account branch) | raw_app_meta_data sets 'role' to 'admin', which GoTrue carries into the app_metadata claim of every access token issued to the account. |
+| propagation | `supabase/setup.sql:182` | update auth.users (existing-account branch) | When the admin email already exists, encrypted_password is reset to the committed literal and role admin is re-merged (lines 184-185), undoing any earlier rotation whenever the script is re-run. |
+| propagation | `src/lib/auth.ts:38` | signIn | supabase.auth.signInWithPassword({ email, password }) uses only the public anon client, so any holder of the literal can make the same GoTrue password grant directly and receive the admin access token. |
+| sink | `supabase/setup.sql:59` | public.is_admin() | Returns true when the JWT's app_metadata.role is 'admin', which opens the admin RLS policies (select all at line 69, update all at 81, delete at 85), the status-change bypass in enforce_status_rules (line 93), and the is_admin()-gated admin RPCs (admin-create-user.sql:38,119). |
+
+**Evidence**
+
+- `supabase/setup.sql:13` — The header comment gives the bootstrap admin password in plaintext (<committed literal>), next to the email on line 12 and role admin on line 14.
+- `supabase/setup.sql:200` — The closing comment repeats the email/password pair as sign-in instructions.
+- `supabase/setup.sql:196` — The existing-account branch raises notice 'Admin updated (role=admin, password reset)', confirming that a re-run resets the password to the literal.
+- `.gitignore:25` — The secret-exclusion section (lines 25-28) covers only .env files. Nothing ignores supabase/ or setup.sql.
+- `README.md:378` — The setup steps tell operators to run setup.sql and only suggest editing the email and password in section 6 first; the shipped values are working defaults.
+- `supabase/setup.sql:81` — The 'admin update all' policy lets an is_admin() caller update any user's time_entries rows, including status.
+- `supabase/admin-create-user.sql:34` — admin_create_user accepts p_role 'admin' after the is_admin() check at line 38, so a compromised admin can mint more admin accounts.
+
+**Blockers (why this is not confirmed)**
+
+- Repository visibility is not visible from source. This checkout has no .git directory, so nothing here shows whether setup.sql with the literal is committed or pushed to a remote, fork or CI log that anyone besides the owner can read.
+- Whether the production Supabase admin account still accepts the committed literal (setup.sql run unedited and not rotated since, or re-run after rotation) is a deployment fact. The auditor cannot observe it without signing in to the deployment, which is prohibited.
+- This host has no OS-enforced sandbox and no safe artifact promotion, so no local reproduction against a throwaway Postgres/GoTrue instance could be run.
+
+**Bounded local check**
+
+In a real clone, the owner runs `git log --all --oneline -- supabase/setup.sql` and `git grep -n admin_pass $(git rev-list --all) -- supabase/setup.sql` to confirm whether the literal is in committed history, and `git remote -v` to list remotes. Optionally, on a disposable local Supabase stack (`supabase start`, no production credentials), apply setup.sql with a dummy email/password, change that dummy user's password in the local dashboard, re-run setup.sql, and confirm the dummy password signs in again. This shows the reset behaviour of lines 181-182.
+
+**Owner-observed deployment check**
+
+The owner, not the auditor, checks the repository host's visibility setting, collaborator list and forks. In the production Supabase dashboard (Authentication → Users), the owner checks the bootstrap admin account's updated_at and last sign-in history to confirm whether its password was rotated after setup.sql last ran, without testing the literal against production. If the repository is or was readable by others: rotate the admin password, review admin sign-in history and admin-role accounts in auth.users, remove the literal from setup.sql (supply it at run time, e.g. a psql variable or a dashboard-created admin, and drop the reset from the existing-account branch), and purge it from git history.
+
+---
+
+## 4. Member-controlled display_name is the only identity label in the admin review queue, leaderboard and Top Timer award
+
+`user-metadata-display-name/admin-console-identity-spoofing`
+
+admin_list_users returns auth.users.raw_user_meta_data->>'display_name'. Under Supabase defaults, an authenticated member can rewrite this field for their own account through the GoTrue user-update endpoint with the public anon-key browser client, and no auth.users trigger or policy in the repository prevents it. When the string is non-empty, the admin console uses it alone to label each review-queue entry owner, each leaderboard row and the monthly Top Timer award; email appears only in the separate Members panel. Nothing enforces uniqueness or admin binding, so a member can set their display name to another member's name (or 'Admin'). Their entries then appear under that identity next to the Approve/Reject buttons, a search for the victim's name also returns them, and leaderboard/award attribution becomes misleading. This can sway the admin's review decisions and misattribute the award. It gives no authorization bypass (status changes still require the admin), and React JSX escaping makes this identity spoofing, not script injection.
+
+**Claimed root cause.** Display labels for other users come from user-writable user_metadata (supabase/admin-create-user.sql:126) and are preferred over immutable attributes such as email or user id (src/app/time/Portal/admIn/page.tsx:61,66; src/lib/awards.ts:41,67). There is no uniqueness check and no admin-owned source, so the member under review controls how the reviewer identifies them.
+
+**Source trace**
+
+| Step | Location | Scope | What happens |
+| --- | --- | --- | --- |
+| entrypoint | `src/lib/supabaseClient.ts:21` | getSupabase | The browser client is created with the public anon key and a persisted session. Any signed-in member holds a bearer session that can call GoTrue user update (auth.updateUser / PUT /auth/v1/user) to set their own user_metadata.display_name; the GoTrue endpoint itself is outside the repository. |
+| propagation | `supabase/admin-create-user.sql:126` | public.admin_list_users() | Selects coalesce(u.raw_user_meta_data ->> 'display_name','') (user-writable metadata) as display_name for every account, whereas role at line 127 comes from raw_app_meta_data. |
+| propagation | `src/lib/auth.ts:126` | adminListUsers | Maps r.display_name straight into AdminUserRow.displayName with no normalisation or uniqueness check. |
+| propagation | `src/app/time/Portal/admIn/page.tsx:61` | AdminInner nameFor | Returns u.displayName \|\| email prefix \|\| userId prefix, so any non-empty attacker-chosen name wins. |
+| propagation | `src/app/time/Portal/admIn/page.tsx:66` | AdminInner portalUsers | The same displayName (falling back to email only when empty) feeds computeMonthlyAward and monthlyLeaderboard. |
+| sink | `src/components/AdminReviewTable.tsx:34` | AdminReviewTable Member column | The admin reviewer sees only nameFor(e.userId) in the row with that entry's Approve/Reject buttons, with no email or user-id disambiguator. |
+
+**Evidence**
+
+- `supabase/admin-create-user.sql:126` — display_name comes from raw_user_meta_data (user-writable), unlike role, which comes from raw_app_meta_data at line 127.
+- `src/app/time/Portal/admIn/page.tsx:61` — nameFor prefers displayName over email and userId.
+- `src/components/AdminReviewTable.tsx:34` — The review-queue Member column renders only the nameFor label.
+- `src/lib/awards.ts:41` — The monthly award displayName is taken from the same user-controlled string.
+- `src/lib/awards.ts:67` — Leaderboard rows take displayName from the same string.
+- `src/components/AwardBanner.tsx:26` — The Top Timer banner renders only award.displayName.
+- `src/app/time/Portal/admIn/page.tsx:132` — Leaderboard list items render only b.displayName.
+- `src/lib/adminFilter.ts:23` — The admin search haystack uses nameFor(e.userId), so searching a victim's name also returns the spoofer's entries.
+- `src/components/MembersPanel.tsx:47` — The Members panel is the only place the email is shown beside the name; the review queue, leaderboard and award do not show it.
+
+**Blockers (why this is not confirmed)**
+
+- This Windows host has no OS-enforced sandbox or safe artifact promotion, so the static admin console could not be run against a local Supabase with a dummy member whose display_name is spoofed to observe the duplicate label.
+- Not visible in source: whether the deployed GoTrue instance accepts a user_metadata update (PUT /auth/v1/user with {data:{display_name}}) from an ordinary member session, which is the Supabase default with no preventing auth.users trigger in the repository; and whether the deployed admin_list_users is the supabase/admin-create-user.sql version that reads raw_user_meta_data.
+
+**Bounded local check**
+
+In a sandboxed local Supabase with no external network, apply supabase/setup.sql and supabase/admin-create-user.sql and point the static build at it. Create dummy members A (display_name 'Alice') and B (display_name 'Bob') and a dummy admin. Sign in as B, call supabase.auth.updateUser({data:{display_name:'Alice'}}), then start and stop one entry as B. Sign in as the admin and check: (1) admin_list_users returns 'Alice' for both A and B; (2) B's pending entry shows 'Alice' in the review-queue Member column with no distinguishing field; (3) a search for 'alice' returns B's entry. Regression after a fix: labels come from an admin-owned field (raw_app_meta_data or an admin-writable profiles table), or the review queue, leaderboard and award always show the email or a user-id prefix beside the name.
+
+**Owner-observed deployment check**
+
+In the Supabase dashboard, the owner checks that no auth hook, trigger or policy blocks members from updating their own user_metadata (the default allows it). In the SQL editor they check that the deployed public.admin_list_users definition selects raw_user_meta_data ->> 'display_name'. No requests to production endpoints are needed.
+
+---
+
