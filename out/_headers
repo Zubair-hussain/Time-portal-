@@ -1,0 +1,29 @@
+# Cloudflare security headers (Workers Static Assets and Pages both read this file).
+# Mirrors the header set on zubair-hussain-portfolio.detroonshah.workers.dev, narrowed to
+# what Time Portal actually talks to: Supabase (REST + realtime) and dns.google (email check).
+# Next.js static export writes inline bootstrap scripts, so script-src needs 'unsafe-inline'.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://dns.google; worker-src 'self' blob:; manifest-src 'self'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  X-Permitted-Cross-Domain-Policies: none
+
+# Hashed build assets never change — cache for a year.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Signed-in pages and the admin console: never cache, never index.
+/dashboard/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
+/insights/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
+/time/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
