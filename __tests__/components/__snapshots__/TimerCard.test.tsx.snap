@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimerCard matches snapshot when idle 1`] = `
+<div>
+  <div
+    class="card"
+  >
+    <div
+      class="row spread"
+    >
+      <span
+        class="dim"
+        style="font-size: 13px;"
+      >
+        Ready
+      </span>
+      <span
+        class="badge"
+      >
+        Idle
+      </span>
+    </div>
+    <div
+      class="stat-value"
+      data-testid="timer-clock"
+      style="margin: 12px 0px; font-size: 44px;"
+    >
+      0:00:00
+    </div>
+    <input
+      aria-label="Session note"
+      class="input"
+      placeholder="What are you working on? (optional)"
+      style="margin-bottom: 12px;"
+      value=""
+    />
+    <button
+      class="btn btn-primary"
+      style="width: 100%;"
+    >
+      Start timer
+    </button>
+  </div>
+</div>
+`;
