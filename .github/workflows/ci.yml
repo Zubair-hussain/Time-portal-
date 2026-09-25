@@ -1,0 +1,112 @@
+# CI/CD — lint, typecheck, test and build on every push/PR; deploy main to Cloudflare Workers.
+#
+# Repository settings used (Settings → Secrets and variables → Actions):
+#   variables: NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SITE_URL
+#   secrets:   CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  NODE_VERSION: '20'
+  NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+  NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+  NEXT_TELEMETRY_DISABLED: '1'
+
+jobs:
+  quality:
+    name: Lint · Typecheck · Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test:ci
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 14
+
+  build:
+    name: Build static export
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: quality
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Check Cloudflare and SEO files are in the export
+        run: |
+          for f in out/_headers out/robots.txt out/sitemap.xml out/favicon.svg out/logo.svg; do
+            test -f "$f" || { echo "::error::missing $f"; exit 1; }
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: static-export
+          path: out/
+          retention-days: 7
+
+  deploy:
+    name: Deploy to Cloudflare Workers
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: ${{ vars.SITE_URL }}
+    env:
+      SITE_URL: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: wrangler deploy
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3.15.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+      - name: Smoke-test live security headers
+        if: env.SITE_URL != ''
+        run: |
+          headers=$(curl -sSfI "$SITE_URL/")
+          for h in content-security-policy strict-transport-security x-content-type-options x-frame-options referrer-policy; do
+            echo "$headers" | grep -qi "^$h:" || { echo "::error::live site is missing $h"; exit 1; }
+          done
