@@ -1,0 +1,474 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginBackdrop matches snapshot 1`] = `
+<div>
+  <svg
+    aria-hidden="true"
+    class="login-backdrop"
+    focusable="false"
+    preserveAspectRatio="xMidYMid slice"
+    viewBox="0 0 1440 900"
+  >
+    <defs>
+      <radialgradient
+        cx="50%"
+        cy="48%"
+        id="bp-vign"
+        r="72%"
+      >
+        <stop
+          offset="52%"
+          stop-color="rgba(0,0,0,0)"
+        />
+        <stop
+          offset="100%"
+          stop-color="rgba(0,0,0,0.6)"
+        />
+      </radialgradient>
+      <pattern
+        height="48"
+        id="bp-grid"
+        patternUnits="userSpaceOnUse"
+        width="48"
+      >
+        <path
+          d="M48 0H0V48"
+          fill="none"
+          stroke="rgba(230,225,211,0.035)"
+          stroke-width="1"
+        />
+      </pattern>
+    </defs>
+    <rect
+      fill="url(#bp-grid)"
+      height="900"
+      width="1440"
+      x="0"
+      y="0"
+    />
+    <g
+      fill="none"
+      stroke="rgba(202,45,70,0.32)"
+      stroke-width="1.4"
+    >
+      <g
+        class="bp-spin"
+        style="transform-box: fill-box;"
+      >
+        <circle
+          cx="360"
+          cy="190"
+          r="120"
+        />
+        <circle
+          cx="470"
+          cy="210"
+          r="120"
+        />
+        <circle
+          cx="415"
+          cy="120"
+          r="95"
+        />
+      </g>
+    </g>
+    <g
+      fill="none"
+      stroke="rgba(230,225,211,0.12)"
+      stroke-width="1"
+    >
+      <circle
+        class="bp-spin-rev"
+        cx="150"
+        cy="640"
+        r="120"
+        stroke-dasharray="3 8"
+        style="transform-box: fill-box;"
+      />
+      <circle
+        cx="150"
+        cy="640"
+        r="70"
+      />
+    </g>
+    <g
+      fill="none"
+      stroke="rgba(202,45,70,0.22)"
+      stroke-width="1.2"
+    >
+      <circle
+        class="bp-spin"
+        cx="1560"
+        cy="250"
+        r="200"
+        stroke-dasharray="2 10"
+        style="transform-box: fill-box;"
+      />
+      <circle
+        cx="1500"
+        cy="560"
+        r="150"
+      />
+    </g>
+    <rect
+      fill="rgba(202,45,70,0.85)"
+      height="3"
+      rx="1.5"
+      width="20"
+      x="80"
+      y="132"
+    />
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="140"
+    >
+      ZH_TIMEPORTAL
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="160"
+    >
+      v1.0.0
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="180"
+    >
+      INTERNAL_USE_ONLY
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="90"
+      y="262"
+    >
+      ZH
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="90"
+      y="282"
+    >
+      TP
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="90"
+      y="302"
+    >
+      //
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="90"
+      y="322"
+    >
+      2024
+    </text>
+    <rect
+      fill="rgba(202,45,70,0.85)"
+      height="3"
+      rx="1.5"
+      width="20"
+      x="80"
+      y="430"
+    />
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="438"
+    >
+      TRACK
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="458"
+    >
+      MANAGE
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="478"
+    >
+      APPROVE
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="498"
+    >
+      EXPORT
+    </text>
+    <rect
+      fill="rgba(202,45,70,0.85)"
+      height="3"
+      rx="1.5"
+      width="20"
+      x="80"
+      y="782"
+    />
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="790"
+    >
+      SECURE
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="810"
+    >
+      RELIABLE
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="830"
+    >
+      SCALABLE
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="108"
+      y="850"
+    >
+      BUILT FOR TEAMS
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.30); font-size: 13px;"
+      x="655"
+      y="152"
+    >
+      37.7749° N
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.30); font-size: 13px;"
+      x="655"
+      y="172"
+    >
+      122.4194° W
+    </text>
+    <g
+      text-anchor="end"
+    >
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="78"
+      >
+        award = topApprovedSeconds()
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="98"
+      >
+        week = isCurrentWeek(now)
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="118"
+      >
+        status: pending 
+        -&gt;
+         approved
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="138"
+      >
+        realtime.subscribe(entries)
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="158"
+      >
+        export 
+        -&gt;
+         out/ (static)
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="178"
+      >
+        build: 60fps · secure
+      </text>
+    </g>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="1300"
+      y="462"
+    >
+      TIME
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="1300"
+      y="482"
+    >
+      PEOPLE
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="1300"
+      y="502"
+    >
+      PROGRESS
+    </text>
+    <text
+      style="font-family: var(--font-body); fill: rgba(230,225,211,0.34); font-size: 13px; letter-spacing: 1px;"
+      x="1300"
+      y="522"
+    >
+      TOGETHER
+    </text>
+    <rect
+      fill="rgba(202,45,70,0.85)"
+      height="3"
+      rx="1.5"
+      width="20"
+      x="1275"
+      y="454"
+    />
+    <g
+      text-anchor="end"
+    >
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="792"
+      >
+        const jwt = inspectJwt(token)
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="812"
+      >
+        if (!jwt.valid) return deny()
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="832"
+      >
+        policy: user.id = auth.uid()
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="852"
+      >
+        role == app_metadata.role
+      </text>
+      <text
+        style="font-family: var(--font-body); fill: rgba(230,225,211,0.20); font-size: 13px;"
+        x="1390"
+        y="872"
+      >
+        SELECT * FROM time_entries
+      </text>
+    </g>
+    <path
+      d="M625 150 h14 M632 143 v14"
+      stroke="rgba(230,225,211,0.5)"
+      stroke-width="1.4"
+    />
+    <g
+      class="bp-flicker"
+    >
+      <path
+        d="M1173 610 h14 M1180 603 v14"
+        stroke="rgba(230,225,211,0.5)"
+        stroke-width="1.4"
+      />
+    </g>
+    <path
+      d="M243 300 h14 M250 293 v14"
+      stroke="rgba(230,225,211,0.35)"
+      stroke-width="1.4"
+    />
+    <path
+      d="M1393 610 h14 M1400 603 v14"
+      stroke="rgba(230,225,211,0.4)"
+      stroke-width="1.4"
+    />
+    <g
+      fill="none"
+      stroke="rgba(230,225,211,0.35)"
+      stroke-width="1.5"
+    >
+      <path
+        d="M40 40 h44 M40 40 v44"
+      />
+      <circle
+        cx="40"
+        cy="40"
+        fill="none"
+        r="4"
+      />
+    </g>
+    <g
+      fill="none"
+      stroke="rgba(230,225,211,0.35)"
+      stroke-width="1.5"
+    >
+      <path
+        d="M1400 40 h-44 M1400 40 v44"
+      />
+      <circle
+        cx="1400"
+        cy="40"
+        fill="none"
+        r="4"
+      />
+    </g>
+    <g
+      fill="none"
+      stroke="rgba(230,225,211,0.35)"
+      stroke-width="1.5"
+    >
+      <path
+        d="M40 860 h44 M40 860 v-44"
+      />
+      <circle
+        cx="40"
+        cy="860"
+        fill="none"
+        r="4"
+      />
+    </g>
+    <g
+      fill="none"
+      stroke="rgba(230,225,211,0.35)"
+      stroke-width="1.5"
+    >
+      <path
+        d="M1400 860 h-44 M1400 860 v-44"
+      />
+      <circle
+        cx="1400"
+        cy="860"
+        fill="none"
+        r="4"
+      />
+    </g>
+    <rect
+      fill="url(#bp-vign)"
+      height="900"
+      width="1440"
+      x="0"
+      y="0"
+    />
+  </svg>
+</div>
+`;
