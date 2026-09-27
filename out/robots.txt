@@ -3,4 +3,4 @@ Allow: /
 Disallow: /dashboard/
 Disallow: /insights/
 
-Sitemap: https://time-portal.detroonshah.workers.dev/sitemap.xml
+Sitemap: https://zh-records.detroons.workers.dev/sitemap.xml
