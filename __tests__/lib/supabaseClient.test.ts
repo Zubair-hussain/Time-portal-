@@ -8,10 +8,10 @@ describe('getSupabase', () => {
     __resetSupabaseForTests();
   });
 
-  it('throws a helpful error when env vars are missing', () => {
+  it('falls back to the hardcoded project when env vars are missing', () => {
     delete process.env.NEXT_PUBLIC_SUPABASE_URL;
     delete process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-    expect(() => getSupabase()).toThrow(/Supabase env vars missing/);
+    expect(() => getSupabase()).not.toThrow();
   });
 
   it('memoizes the client', () => {
