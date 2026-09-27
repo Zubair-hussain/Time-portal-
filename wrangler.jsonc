@@ -3,7 +3,7 @@
 // copied into ./out by the build and applied by Cloudflare at the edge.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "time-portal",
+  "name": "zh-records",
   "compatibility_date": "2026-05-01",
   "assets": {
     "directory": "./out",
