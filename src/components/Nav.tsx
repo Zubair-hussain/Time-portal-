@@ -4,7 +4,6 @@ import React from 'react';
 import Link from 'next/link';
 import ZHLogo from '@/components/ZHLogo';
 import { useAuth } from '@/context/AuthContext';
-import { ROUTES } from '@/lib/routes';
 
 export function Nav() {
   const { user, signOut } = useAuth();
@@ -25,11 +24,6 @@ export function Nav() {
         <Link href="/insights/" className="label" style={{ color: 'var(--text)' }}>
           Insights
         </Link>
-        {user.role === 'admin' && (
-          <Link href={ROUTES.admin} className="label" style={{ color: 'var(--accent)' }}>
-            Admin
-          </Link>
-        )}
         <span className="label">{user.displayName}</span>
         <button className="btn" onClick={() => void signOut()}>
           Sign out
