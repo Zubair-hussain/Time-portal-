@@ -5,6 +5,13 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "zh-records",
   "compatibility_date": "2026-05-01",
+  // Mirrors the dashboard "Runtime variables" so deploys stay in sync. The static
+  // build does not read these at runtime; the Supabase client has them hardcoded.
+  "vars": {
+    "NEXT_PUBLIC_SUPABASE_URL": "https://tbjivibugttwwhcfswde.supabase.co",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiaml2aWJ1Z3R0d3doY2Zzd2RlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAzMjk0NjEsImV4cCI6MjEwNTkwNTQ2MX0.VJCKQVvWwpexpYRCc5gElpX-unLkb9FCmAyM2A_IoAk",
+    "NEXT_PUBLIC_SITE_URL": "https://zh-records.detroons.workers.dev"
+  },
   "assets": {
     "directory": "./out",
     "not_found_handling": "404-page",
