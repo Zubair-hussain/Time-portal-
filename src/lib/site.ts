@@ -4,5 +4,5 @@
  * Workers URL that `wrangler deploy` gives this project.
  */
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://time-portal.detroonshah.workers.dev'
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://zh-records.detroons.workers.dev'
 ).replace(/\/+$/, '');
