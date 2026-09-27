@@ -1,6 +1,6 @@
 # Time Portal — audit summary
 
-Audited 2026-09-25. Interactive report: [claude.ai/artifact/6DZ7tYQKrYS2aBYacgkqny](https://claude.ai/artifact/6DZ7tYQKrYS2aBYacgkqny). Everything below can be re-run locally or by the GitHub workflows in
+Audited 2026-09-25. Everything below can be re-run locally or by the GitHub workflows in
 [`.github/workflows/`](.github/workflows/).
 
 | Audit | Tool | Result | Full report |
