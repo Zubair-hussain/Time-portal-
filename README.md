@@ -19,7 +19,7 @@ Invite-only time tracking with weekly insights, admin review and a monthly award
 [![Lighthouse](https://img.shields.io/badge/Lighthouse-99--100-2ea043?logo=lighthouse&logoColor=white)](#audits)
 [![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
-[Audit report](https://claude.ai/artifact/6DZ7tYQKrYS2aBYacgkqny) · [Portfolio](https://zubair-hussain-portfolio.detroonshah.workers.dev/) · [Design](figma-design/) · [Wireframes](wireframes/)
+[Portfolio](https://zubair-hussain-portfolio.detroonshah.workers.dev/) · [Design](figma-design/) · [Wireframes](wireframes/)
 
 </div>
 
@@ -213,7 +213,7 @@ Required repository settings (**Settings → Secrets and variables → Actions**
 
 ## Audits
 
-Summary in [`AUDIT.md`](AUDIT.md). Interactive report: **[view audit report](https://claude.ai/artifact/6DZ7tYQKrYS2aBYacgkqny)**.
+Summary in [`AUDIT.md`](AUDIT.md).
 
 | Audit | Result | Details |
 | --- | --- | --- |
