@@ -33,7 +33,7 @@ describe('Nav', () => {
     expect(screen.getByText('Insights')).toBeInTheDocument();
   });
 
-  it('shows the Admin link for admins and signs out', async () => {
+  it('never shows an Admin link, even for admins, and signs out', async () => {
     const signOut = jest.fn();
     mockUseAuth.mockReturnValue({
       user: { id: '1', email: 'a@x.com', role: 'admin', displayName: 'Boss' },
@@ -41,8 +41,8 @@ describe('Nav', () => {
     });
     const { container } = render(<Nav />);
     expect(container).toMatchSnapshot();
-    expect(screen.getByText('Admin')).toBeInTheDocument();
-    expect(screen.getByText('Admin').closest('a')).toHaveAttribute('href', '/time/Portal/admIn/');
+    expect(screen.queryByText('Admin')).not.toBeInTheDocument();
+    expect(container.innerHTML).not.toContain('admIn');
     expect(container.innerHTML).not.toContain('href="/admin/');
     await userEvent.click(screen.getByRole('button', { name: /sign out/i }));
     expect(signOut).toHaveBeenCalled();
