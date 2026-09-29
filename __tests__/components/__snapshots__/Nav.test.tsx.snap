@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Nav never shows an Admin link, even for admins, and signs out 1`] = `
+exports[`Nav shows the Admin link only for admins and signs out 1`] = `
 <div>
   <nav
     class="row spread"
@@ -56,6 +56,12 @@ exports[`Nav never shows an Admin link, even for admins, and signs out 1`] = `
         href="/insights/"
       >
         Insights
+      </a>
+      <a
+        class="label"
+        href="/admin/"
+      >
+        Admin
       </a>
       <span
         class="label"

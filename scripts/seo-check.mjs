@@ -39,7 +39,7 @@ const imgs = home.match(/<img\b[^>]*>/gi) || [];
 check('home', 'all <img> have alt', imgs.every((t) => /\balt="/i.test(t)), `${imgs.length} images`);
 
 // ---- Private pages must not be indexed -------------------------------------
-for (const p of ['dashboard/index.html', 'insights/index.html', 'time/Portal/admIn/index.html']) {
+for (const p of ['dashboard/index.html', 'insights/index.html', 'admin/index.html']) {
   const html = read(p);
   check('private', `${p} exists`, html !== null);
   if (html) check('private', `${p} has noindex`, /<meta[^>]*name="robots"[^>]*noindex/i.test(html));

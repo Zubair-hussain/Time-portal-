@@ -24,6 +24,9 @@
 /insights/*
   Cache-Control: no-store
   X-Robots-Tag: noindex, nofollow
+/admin/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
 /time/*
   Cache-Control: no-store
   X-Robots-Tag: noindex, nofollow

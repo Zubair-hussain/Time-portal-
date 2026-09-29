@@ -1,9 +1,8 @@
 import { ROUTES } from '@/lib/routes';
 
 describe('ROUTES', () => {
-  it('keeps the admin console off the guessable /admin path', () => {
-    expect(ROUTES.admin).toBe('/time/Portal/admIn/');
-    expect(ROUTES.admin.toLowerCase()).not.toBe('/admin/');
+  it('uses the conventional admin path', () => {
+    expect(ROUTES.admin).toBe('/admin/');
   });
 
   it('every route is absolute and (except home) ends with a slash for the static export', () => {
