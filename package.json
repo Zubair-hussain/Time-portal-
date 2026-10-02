@@ -23,7 +23,7 @@
     "audit:seo": "node scripts/seo-check.mjs out"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.0",
+    "@supabase/supabase-js": "^2.117.2",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
     "next": "^15.5.26",
